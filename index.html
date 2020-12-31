@@ -1,0 +1,459 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <title>YES x HV Pitch Competition</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta name = "viewport" content = "width = device-width, initial scale = 1.0">
+    <style>
+        body {
+            font-family: sofia-pro;
+        }
+
+        nav {
+        	font-family: 'Montserrat', sans-serif;
+        	font-weight: 700;
+        	color: black;
+        }
+
+        #headline {
+        	display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: row;
+
+        }
+
+
+        #headline h3 {
+        	font-family: 'Montserrat', sans-serif;
+        	font-size: 25px;
+			font-weight: 600;
+			padding-bottom: 5px;
+			color: black;
+			display: block;
+		}
+        
+
+        #headline h1 {
+        	font-family: 'Montserrat', sans-serif;
+        	font-size: 80px;
+			font-weight: 900;
+			padding-bottom: 5px;
+			color: black;
+			display: block;
+		}
+
+		#headline h1:nth-child(1) {
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #328ef6;
+			text-shadow: 15px 10px 1px #051b33;
+
+		}
+
+		#headline h1:nth-child(2) {		
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #328ef6;
+			clip-path: inset(55% 0% 0% 0%);			 
+			
+		}
+
+		#headline h1:nth-child(3) {
+			position: relative;
+			bottom: 110px; 			
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #AB0D24;
+			clip-path: inset(0% 0% 45% 0%);
+
+		}
+
+		#headline h1:nth-child(4) {
+			position: relative;
+			bottom: 110px; 
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #AB0D24;
+			text-shadow: 15px 10px 1px #380915;
+
+		}
+
+		#headline h3:nth-child(5) {
+			position: relative;
+			bottom: 110px; 
+		}
+
+		.logo {
+			text-align: center;
+			vertical-align: middle;
+			padding:6px;
+			/*margin:2px;*/		
+				
+			
+		}
+
+		.light {
+			position: relative;
+			background: lightgray;
+			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+		}
+
+		.inside {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			right: 10px;
+			bottom: 10px;
+			background: white;
+			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+		}
+
+
+
+		.logo:hover {
+			 animation-name:spin;
+			 animation-timing-function:linear; /*cubic-bezier(1,0.25,0.25,1);*/
+			 animation-iteration-count: 1;
+			 animation-duration: 1s;
+			 -webkit-animation-name: spin;
+			 -webkit-animation-timing-function: linear;
+			 -webkit-animation-iteration-count: 1;
+			 -webkit-animation-duration: 1s;
+		}
+
+		.dark {
+			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+			background-color: black;		
+			
+		}
+
+
+		#backdrop {
+			position: relative;
+			top: 0px;
+			left: 0px;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: baseline;
+
+
+		}
+
+		img {
+			max-width: 100%;
+   			max-height: 100%;
+   			text-align: center;	
+   			margin-bottom: 10px;
+   			
+		}
+
+		@keyframes spin {
+			from {
+				transform: rotateY(0deg);
+				moz-transform: rotateY(0deg);
+ 				ms-transform: rotateY(0deg);
+			}
+
+			to{
+				 transform: rotateY(180deg);
+				 moz-transform: rotateY(180deg); //Firefox
+				 ms-transform: rotateY(180deg); //Microsoft Browsers
+			}
+
+			@-webkit-keyframes spin{
+			 from{-webkit-transform: rotateY(0deg);}
+			 to{-webkit-transform: rotateY(180deg);}
+			}
+
+		}
+
+
+
+
+        .yes-navy-blue {
+
+           background-color: #051b33;
+
+        }
+
+        .yes-electric-blue {
+
+            background-color: #328ef6;
+
+        }
+
+        .harvard-red {
+
+        	background-color: #AB0D24
+        }
+
+        .yes-navy-blue-text {
+
+           color: #051b33;
+
+        }
+
+        .yes-electric-blue-text {
+
+           color: #328ef6;
+
+        }
+
+        .harvard-red-text {
+
+        	color: #AB0D24
+        }
+
+        #backdrop di
+
+    </style>
+
+
+</head>
+
+<body>
+	<script>
+		 $(document).ready(function() {
+
+		 	backdrop()
+		 	$(window).resize(function() {
+		 		$("#backdrop").empty()
+		 		backdrop()
+		 	})
+
+		 	$()
+
+
+
+
+		 	function backdrop () {
+		 		var toggle = true;
+			 	var headline_width = $("#headline").width()
+			 	var headline_height = $("#headline").height()
+			 	console.log(headline_height, headline_width)
+
+			 	//change block numbers based on screen size
+			 	var block_height= 30
+			 	var block_width = 30
+
+			 	var num_block_column = Math.floor(headline_width/block_width)
+			 	
+			 	var num_block_row = Math.floor(headline_height/block_height)
+
+			 	if (num_block_column % 2 != 0){
+			 		num_block_column = num_block_column - 1
+			 	}
+
+			 	
+			 	
+
+
+			 	console.log("num_block_column: " + num_block_column, "num_block_row: " + num_block_row)
+
+			 	$(".logo").css(({"height":block_height, "width": block_width}))
+			 	
+			 	var yes_light = $(".yes_light")
+			 	var yes_dark = $(".yes_dark")
+			 	var hv_light = $(".hv_light")
+			 	var hv_dark = $(".hv_dark")	
+
+			 	// var toggle = toggle_key(hv_dark, hv_light) 	
+			 	// console.log(toggle, "toggle")
+
+			 	var toggle_key = headline_width - (Math.floor(num_block_column * block_width))
+
+			 	if (toggle_key > 16 && toggle_key < 46){
+			 		toggle = false
+			 	}
+
+			 	console.log(block_height, block_width, yes_light, yes_dark)
+
+			 	if (toggle){
+			 		for (var i = 0; i < num_block_row; i++){
+			 			normal_gen()
+
+			 		}			 		
+			 	} else {
+			 		for (var i = 0; i < num_block_row; i++){
+			 			normal_gen_skip()
+			 			
+			 		}
+
+			 	}
+
+
+
+			 	function normal_gen(){
+			 		for (let j = 0; j < num_block_column; j++ ){
+			 			if (j % 2 === 0){
+			 				const block = hv_dark.clone().
+			 				css({
+								"position":"relative",
+			 					"bottom": block_height/2,
+			 					"background-color": "blue",
+			 					"margin-bottom": block_height/4 + "px",
+			 				}).
+			 					appendTo($("#backdrop"))
+			 			} else {
+			 				const block = hv_light.clone().appendTo($("#backdrop"))
+			 				//console.log(block.position().top, block)
+			 			}
+			 		}	
+			 	}
+
+			 	function normal_gen_skip(){
+			 		for (let j = 0; j < num_block_column; j++ ){
+			 			if (j + 1 === num_block_column){
+			 					return
+			 				}
+			 			if (j % 2 === 0){
+			 				const block = hv_dark.clone().
+			 				css({
+								"position":"relative",
+			 					"bottom": block_height/2,
+			 					"background-color": "blue",
+			 					"margin-bottom": block_height/4 + "px",
+			 				}).
+			 					appendTo($("#backdrop"))
+			 			} else {			 				
+			 				const block = hv_light.clone().appendTo($("#backdrop"))
+			 			}
+			 		}	
+			 	}
+
+				function toggle_key(hv_dark, hv_light) {
+					var position_dark = 0
+					var position_light = 0;
+					for (var i = 0; i < 1; i++){
+						for (let j = 0; j < num_block_column; j++ ){
+				 			if (j % 2 === 0){
+				 				const block = hv_dark.clone().
+				 				css({
+									"position":"relative",
+				 					"bottom": block_height/2,
+				 					"margin-bottom": block_height/4 + "px",
+				 				}).
+				 					appendTo($("#backdrop"))
+				 				//console.log(block.position().top, block)
+				 				position_dark = block.position().top
+				 			} else {
+				 				const block = hv_light.clone().appendTo($("#backdrop"))
+				 				//console.log(block.position().top, block)
+				 				position_light = block.position().top
+				 			}
+			 			}	
+
+					}
+					//$("#backdrop").empty()
+					console.log(position_light, position_dark)
+					if (position_light > 30){
+						console.log("toggle false")
+						return false
+					} else {
+						console.log("toggle true")
+						return true
+					}
+
+				}
+		
+
+			 	$("#headline").css({"position": "relative", "bottom": headline_height + "px"})
+
+			 	}
+
+			 	function findrow(element, offset){
+			 		var position = element.position().top;
+			 		return Math.floor(position/offset) + 1
+			 	}
+
+		 		
+
+		 	
+		 })
+	</script>
+
+	<div class = "container-fluid" id = "main">
+		<nav class = "navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
+			<a class="navbar-brand" href="#">Navbar</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+
+		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav ml-auto">
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://www.yesatyale.org/">yale entrepreneurial society</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://www.harvardventures.org/">harvard ventures</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://onepager.vc/">onepager</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">FAQs</a>
+			      </li>
+    			</ul>
+    		</div>
+		</nav>
+
+		<div id = "backdrop">
+		</div>
+
+
+		<div class = "row" id = "headline">
+			<div class = "col-12 mx-auto text-center">
+				<h1 class = "yes-navy-blue-text"> yale entrepreneurial society </h1>
+				<h1> x </h1>
+				<h1> x </h1>
+				<h1> harvard ventures </h1>
+				<h3> submissions due sunday, march 14th, 2021 </h3>
+				<h1> pitch competition </h1>
+				<h3> live pitch sunday, march 28th, 2021 </h3>
+			</div>
+		</div>
+		<div class = "row" id = "about">
+			about
+		</div>
+		<div class = "row" id = "meet">
+			meet the judges
+		</div>
+		<div class = "row" id = "sponsors">
+			sponsors
+		</div>
+
+	</div>
+
+	<div class = "logo yes_light yes light">
+		<img src= "yes_light.png" >
+	</div>
+
+	<div class = "logo hv_light hv light">
+		<img src= "hv_light.png" >
+	</div>
+
+
+	<div class = "logo yes_dark yes dark">
+		<img src= "yes_dark.png" >
+	</div>
+
+	<div class = "logo hv_dark hv dark">
+		<img src= "hv_dark.png" >
+	</div>
+
+
+</body>
+</html>
