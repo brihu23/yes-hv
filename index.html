@@ -95,20 +95,24 @@
 			bottom: 110px; 
 		}
 
+		.back {
+			display: none;
+		}
+
 		.logo {
-			text-align: center;
-			vertical-align: middle;
-			padding:6px;
+			/*padding-top: 2px;
+			padding-bottom: 2px;*/
+		
 			/*margin:2px;*/		
 				
 			
 		}
 
-		.light {
+/*		.light {
 			position: relative;
-			background: lightgray;
+			background: #f0f0f1;
 			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-		}
+		}*/
 
 		.inside {
 			position: absolute;
@@ -133,11 +137,11 @@
 			 -webkit-animation-duration: 1s;
 		}
 
-		.dark {
+/*		.dark {
 			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
 			background-color: black;		
 			
-		}
+		}*/
 
 
 		#backdrop {
@@ -151,10 +155,11 @@
 		}
 
 		img {
+			/*height: 100%;*/
+			width: 100%;
 			max-width: 100%;
    			max-height: 100%;
    			text-align: center;	
-   			margin-bottom: 10px;
    			
 		}
 
@@ -228,11 +233,10 @@
 
 		 	backdrop()
 		 	$(window).resize(function() {
-		 		$("#backdrop").empty()
-		 		backdrop()
+		 		location.reload()
 		 	})
 
-		 	$()
+
 
 
 
@@ -252,7 +256,7 @@
 			 	var num_block_row = Math.floor(headline_height/block_height)
 
 			 	if (num_block_column % 2 != 0){
-			 		num_block_column = num_block_column - 1
+			 		num_block_column = num_block_column
 			 	}
 
 			 	
@@ -268,42 +272,31 @@
 			 	var hv_light = $(".hv_light")
 			 	var hv_dark = $(".hv_dark")	
 
-			 	// var toggle = toggle_key(hv_dark, hv_light) 	
-			 	// console.log(toggle, "toggle")
-
-			 	var toggle_key = headline_width - (Math.floor(num_block_column * block_width))
-
-			 	if (toggle_key > 16 && toggle_key < 47){
-			 		toggle = false
-			 	}
-
-			 	// if (toggle_key > 0 && toggle_key < 30){
-			 	// 	toggle = false
-			 	// }
 
 			 	console.log(block_height, block_width, yes_light, yes_dark)
-			 	console.log(toggle_key,toggle)
 
-			 	if (!toggle){
-			 		for (var i = 0; i < num_block_row; i++){
-			 			if (i % 2 === 0){
-			 				normal_gen(hv_dark, yes_dark)
-			 			} else {
-			 				normal_gen(yes_dark, hv_dark)
-			 			}
-			 			
+		 		for (var i = 0; i < num_block_row; i++){
+		 			if (i % 2 === 0){
+		 				normal_gen(hv_dark, yes_dark)
+		 				//normal_gen(hv_light, yes_light)
+		 			} else {
+		 				normal_gen(yes_dark, hv_dark)
+		 				//normal_gen(yes_light, hv_light)
+		 			}
+		 		} 			
 
-			 		}			 		
-			 	} else {
-			 		for (var i = 0; i < num_block_row; i++){
-			 			if (i % 2 === 0){
-			 				normal_gen_skip(hv_dark, yes_dark)
-			 			} else {
-			 				normal_gen_skip(yes_dark, hv_dark)
-			 			}
-			 		}
+			 	
 
-			 	}
+			 	
+
+
+
+			 	var random_number = Math.floor(Math.random() * (num_block_column - 1)) + 200
+			 	console.log(random_number, $("#backdrop").children().eq(30))
+			 	// setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
+
+				tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)
+
 
 
 
@@ -314,58 +307,90 @@
 			 				css({
 								"position":"relative",
 			 					"bottom": block_height/2,
-			 					"margin-bottom": block_height/4 + "px",
-			 				}).
-			 					appendTo($("#backdrop"))
+			 					// "margin-bottom": block_height/4,			 					
+			 				}).data("orient","top").data("mode", "dark").appendTo($("#backdrop"))
 			 			} else {
-			 				const block = element1.clone().appendTo($("#backdrop"))
-			 				//console.log(block.position().top, block)
+			 				const block = element1.clone().
+			 				data("orient","bottom").data("mode", "dark").appendTo($("#backdrop"))
+			 				//console.log(block, block.data("orient"))
 			 			}
 			 		}	
 			 	}
-
-			 	function normal_gen_skip(element, element1){
-			 		for (let j = 0; j < num_block_column; j++ ){
-			 			if (j + 1 === num_block_column){
-			 					return
-			 				}
-			 			if (j % 2 === 0){
-			 				const block = element.clone().
-			 				css({
-								"position":"relative",
-			 					"bottom": block_height/2,
-			 					"margin-bottom": block_height/4 + "px",
-			 				}).
-			 					appendTo($("#backdrop"))
-			 			} else {			 				
-			 				const block = element1.clone().appendTo($("#backdrop"))
-			 			}
-			 		}	
-			 	}
-
 		
 
-			 	 $("#headline").css({"position": "relative", "bottom": headline_height + "px"})
+			 	 //$("#headline").css({"position": "relative", "bottom": headline_height + "px"})
 
 			 	}
 
-			 	// function tessalate(){
-			 	// 	var yes_class_light
-			 	// 	var yes_class_dark
-			 	// 	var hv_class_light
-			 	// 	var hv_class_dark
-			 	// 	var yes_image_light
-			 	// 	var yes_image_dark
-			 	// 	var hv_image_light
-			 	// 	var hv_image_dark
+			 	function tessalate(source_tile, row_length){
+			 		// source_tile.css({
+			 		// 	"background-color": "pink",
+			 		// })
+			 		console.log("orient", source_tile.data("orient"))
+			 		var right_sibling = source_tile.next()
+			 		var left_sibling = source_tile.prev()
+			 		var top_sibling = source_tile.prevAll().eq(row_length).next()
+			 		var bottom_sibling = source_tile.nextAll().eq(row_length).prev()
 
-			 	// 	for (var i = 0; i < 5; i++){
-			 	// 		if 
-			 	// 	}
+			 		console.log(top_sibling) 
+ 
+			 		if (source_tile.data("orient") === "top")
+				 		{
+				 			var diagonal_left_sibling = top_sibling.prev()
+				 			var diagonal_right_sibling = top_sibling.next()
+				 	} else {
+				 			var diagonal_left_sibling = bottom_sibling.prev()
+				 			var diagonal_right_sibling = bottom_sibling.next()
+				 	}
+				 	var sibling_array = [ right_sibling, left_sibling, diagonal_right_sibling, diagonal_left_sibling, top_sibling, bottom_sibling]
+
+			 		for (var i = 0; i < sibling_array.length; i++){
+			 			var images = sibling_array[i].children()
+			 			
+			 			if (sibling_array[i].hasClass("dark")){
+			 				flip_animate(0, 180, sibling_array[i], images)
+			 				sibling_array[i].removeClass("dark").addClass("light")
+			 				$(images[0]).removeClass().addClass("back")
+			 				$(images[1]).removeClass().addClass("front")
+			 			} else {
+			 				flip_animate(0, 180, sibling_array[i], images)
+			 				sibling_array[i].removeClass("light").addClass("dark")
+			 				$(images[0]).removeClass().addClass("front")
+			 				$(images[1]).removeClass().addClass("back")
+
+			 			}
+
+
+	
+			 		}
+
+
+			 		function flip_animate (start_degree, end_degree, element, images){
+			 			$({deg:start_degree}).animate({deg: end_degree}, {
+			 				duration: 2000,
+			 				step: function(now){
+			 					element.css({
+			 						"transform" : "rotateY(" + now + "deg)",
+									"moz-transform" : "rotateY(" + now + "deg)",
+									"ms-transform": "rotateY(" + now + "deg)",
+			 					})
+			 				}
+			 			}, function () {
+			 				element.removeClass("dark").addClass("light")
+			 				$(images[0]).removeClass().addClass("back")
+			 				$(images[1]).removeClass().addClass("front")
+
+			 			})
+
+			 		}
+				 	
 
 
 
-			 	// }
+			 	}
+
+
+
 
 		 		
 
@@ -434,13 +459,24 @@
 	</div>
 
 
-	<div class = "logo yes_dark yes dark">
-		<img src= "yes_dark.png" >
+	<div class = "logo yes_dark dark">
+		<div class = "front">
+		<img  src= "yes_dark_hex.png" >
+		</div>
+		<div class = "back">
+		<img src= "hv_light_hex.png" >
+		</div>			
 	</div>
 
-	<div class = "logo hv_dark hv dark">
-		<img src= "hv_dark.png" >
+	<div class = "logo hv_dark dark">
+		<div class = "front">
+		<img src= "hv_dark_hex.png" >
+		</div>	
+		<div class = "back">
+		<img src= "yes_light_hex.png">
+		</div>
 	</div>
+
 
 
 </body>
