@@ -8,9 +8,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"> </script>
     
     <style>
+
+    	@import "compass/css3";
+
         body {
             font-family: sofia-pro;
         }
@@ -95,53 +99,32 @@
 			bottom: 110px; 
 		}
 
-		.back {
-			display: none;
-		}
+
 
 		.logo {
-			/*padding-top: 2px;
-			padding-bottom: 2px;*/
+			opacity: 0.3;		
+			
+		}
+
 		
-			/*margin:2px;*/		
-				
-			
+
+
+		@keyframes flash {
+		  from {opacity: 0.3; transform: scale(1); }
+		  33% { opacity: .5; transform: scale(1.1); }
+
+		  66% { opacity: .7; transform: scale(1.2); }
+
+		  to { opacity: 0.3; transform: scale(1); }
+
 		}
 
-/*		.light {
-			position: relative;
-			background: #f0f0f1;
-			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-		}*/
-
-		.inside {
-			position: absolute;
-			top: 10px;
-			left: 10px;
-			right: 10px;
-			bottom: 10px;
-			background: white;
-			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+		.animate {
+			animation-name: flash; 
+			animation-duration: 2s;
+			animation-timing-function: linear;
+			animation-iteration-count: 1;
 		}
-
-
-
-		.logo:hover {
-			 animation-name:spin;
-			 animation-timing-function:linear; /*cubic-bezier(1,0.25,0.25,1);*/
-			 animation-iteration-count: 1;
-			 animation-duration: 1s;
-			 -webkit-animation-name: spin;
-			 -webkit-animation-timing-function: linear;
-			 -webkit-animation-iteration-count: 1;
-			 -webkit-animation-duration: 1s;
-		}
-
-/*		.dark {
-			clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-			background-color: black;		
-			
-		}*/
 
 
 		#backdrop {
@@ -162,27 +145,6 @@
    			text-align: center;	
    			
 		}
-
-		@keyframes spin {
-			from {
-				transform: rotateY(0deg);
-				moz-transform: rotateY(0deg);
- 				ms-transform: rotateY(0deg);
-			}
-
-			to{
-				 transform: rotateY(180deg);
-				 moz-transform: rotateY(180deg); //Firefox
-				 ms-transform: rotateY(180deg); //Microsoft Browsers
-			}
-
-			@-webkit-keyframes spin{
-			 from{-webkit-transform: rotateY(0deg);}
-			 to{-webkit-transform: rotateY(180deg);}
-			}
-
-		}
-
 
 
 
@@ -220,7 +182,11 @@
         	color: #AB0D24
         }
 
-        #backdrop
+        .logo:hover {
+			opacity:1;
+		}
+
+        
 
     </style>
 
@@ -231,10 +197,19 @@
 	<script>
 		 $(document).ready(function() {
 
+		 	var global_mode = "dark"
+
 		 	backdrop()
+
 		 	$(window).resize(function() {
 		 		location.reload()
 		 	})
+
+		 	$(".logo").flip({
+		 		trigger: 'manual',
+		 		speed: 800
+		 	})
+
 
 
 
@@ -248,8 +223,8 @@
 			 	console.log(headline_height, headline_width)
 
 			 	//change block numbers based on screen size
-			 	var block_height= 30
-			 	var block_width = 30
+			 	var block_height= 40
+			 	var block_width = 40
 
 			 	var num_block_column = Math.floor(headline_width/block_width)
 			 	
@@ -288,16 +263,34 @@
 			 	
 
 			 	
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 2000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 2000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		
+		 		
+		 		setInterval (function () {
+		 			
+		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+		 			tessalate(random_child, num_block_column, false, global_mode)
+		 			
 
+		 		}, 7000)
 
+			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
 
-			 	var random_number = Math.floor(Math.random() * (num_block_column - 1)) + 200
-			 	console.log(random_number, $("#backdrop").children().eq(30))
-			 	// setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
+				//tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)
 
-				tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)
+				
 
+				// $(".logo").click(function () {
+				// 	tessalate($(this), num_block_column,false, global_mode)
 
+				// })
 
 
 			 	function normal_gen(element, element1){
@@ -318,76 +311,81 @@
 			 	}
 		
 
-			 	 //$("#headline").css({"position": "relative", "bottom": headline_height + "px"})
+			 	 $("#headline").css({"position": "relative", "bottom": headline_height/1.25 + "px", "pointer-events": "none",})
 
 			 	}
 
-			 	function tessalate(source_tile, row_length){
-			 		// source_tile.css({
-			 		// 	"background-color": "pink",
-			 		// })
-			 		console.log("orient", source_tile.data("orient"))
-			 		var right_sibling = source_tile.next()
-			 		var left_sibling = source_tile.prev()
-			 		var top_sibling = source_tile.prevAll().eq(row_length).next()
-			 		var bottom_sibling = source_tile.nextAll().eq(row_length).prev()
-
-			 		console.log(top_sibling) 
- 
-			 		if (source_tile.data("orient") === "top")
-				 		{
-				 			var diagonal_left_sibling = top_sibling.prev()
-				 			var diagonal_right_sibling = top_sibling.next()
-				 	} else {
-				 			var diagonal_left_sibling = bottom_sibling.prev()
-				 			var diagonal_right_sibling = bottom_sibling.next()
-				 	}
-				 	var sibling_array = [ right_sibling, left_sibling, diagonal_right_sibling, diagonal_left_sibling, top_sibling, bottom_sibling]
-
-			 		for (var i = 0; i < sibling_array.length; i++){
-			 			var images = sibling_array[i].children()
-			 			
-			 			if (sibling_array[i].hasClass("dark")){
-			 				flip_animate(0, 180, sibling_array[i], images)
-			 				sibling_array[i].removeClass("dark").addClass("light")
-			 				$(images[0]).removeClass().addClass("back")
-			 				$(images[1]).removeClass().addClass("front")
-			 			} else {
-			 				flip_animate(0, 180, sibling_array[i], images)
-			 				sibling_array[i].removeClass("light").addClass("dark")
-			 				$(images[0]).removeClass().addClass("front")
-			 				$(images[1]).removeClass().addClass("back")
-
-			 			}
-
-
-	
+			 	async function tessalate(source_tile, row_length, timeout, mode){
+			 		if (mode === "dark"){
+			 			var from = "dark"
+			 			var to = "light"
+			 		} else {
+			 			var from = "light"
+			 			var to = "dark"
 			 		}
 
-
-			 		function flip_animate (start_degree, end_degree, element, images){
-			 			$({deg:start_degree}).animate({deg: end_degree}, {
-			 				duration: 2000,
-			 				step: function(now){
-			 					element.css({
-			 						"transform" : "rotateY(" + now + "deg)",
-									"moz-transform" : "rotateY(" + now + "deg)",
-									"ms-transform": "rotateY(" + now + "deg)",
-			 					})
-			 				}
-			 			}, function () {
-			 				element.removeClass("dark").addClass("light")
-			 				$(images[0]).removeClass().addClass("back")
-			 				$(images[1]).removeClass().addClass("front")
-
-			 			})
-
+			 		if (timeout) {
+			 			const promise = await sleep(75)
 			 		}
-				 	
 
+			 			//source_tile.css({"opacity": "0.1"})
+
+				 		
+				 		var right_sibling = source_tile.next()
+				 		var left_sibling = source_tile.prev()
+				 		var top_sibling = source_tile.prevAll().eq(row_length).next()
+				 		var bottom_sibling = source_tile.nextAll().eq(row_length).prev()
+
+				 		if (source_tile.data("orient") === "top")
+					 		{
+					 			var diagonal_left_sibling = top_sibling.prev()
+					 			var diagonal_right_sibling = top_sibling.next()
+					 	} else {
+					 			var diagonal_left_sibling = bottom_sibling.prev()
+					 			var diagonal_right_sibling = bottom_sibling.next()
+					 	}
+
+					 	change(right_sibling, from, to, mode)
+					 	change(left_sibling, from, to, mode)
+					 	change(diagonal_right_sibling, from, to, mode)
+					 	change(diagonal_left_sibling,from, to, mode)
+					 	change(top_sibling, from, to, mode)
+					 	change(bottom_sibling, from, to, mode)
+
+					 	if (global_mode === "dark"){
+					 		global_mode = "light"
+					 	} else {
+					 		global_mode = "dark"
+					 	}				 	
+
+					 	return
+		 			
+
+					function change (element, condition, change_to, mode){
+						if (element.data("mode") === condition){
+							element.data("mode", change_to)
+							//element.css({"opacity": "0.1"})
+							element.flip("toggle", tessalate(element, row_length, true, mode))
+						}
+
+					}
 
 
 			 	}
+
+			 	function pop (num_block_column, num_block_row) {
+
+			 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+			 			random_child.removeClass('animate')
+			 			console.log(random_child, "pop")
+				 		random_child.addClass('animate');
+				 		//sleep(1000)
+				 		// random_child.removeClass('animate');
+				 }
+
+				function sleep(ms) {
+					  return new Promise(resolve => setTimeout(resolve, ms));
+				}
 
 
 
