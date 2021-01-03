@@ -56,10 +56,10 @@
 
 		#headline h1:nth-child(1) {
 			color: black;
-			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
-			-webkit-text-stroke-width: 3px;
-			-webkit-text-stroke-color: #328ef6;
-			text-shadow: 15px 10px 1px #051b33;
+			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: #ffffff;;
+			/*text-shadow: 15px 10px 1px #000000;;*/
 
 		}
 
@@ -87,10 +87,10 @@
 			position: relative;
 			bottom: 110px; 
 			color: black;
-			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
-			-webkit-text-stroke-width: 3px;
-			-webkit-text-stroke-color: #AB0D24;
-			text-shadow: 15px 10px 1px #380915;
+			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: #ffffff;;
+			/*text-shadow: 15px 10px 1px #000000;;*/
 
 		}
 
@@ -150,19 +150,19 @@
 
         .yes-navy-blue {
 
-           background-color: #051b33;
+           background-color: #000000; /*#051b33;*/
 
         }
 
         .yes-electric-blue {
 
-            background-color: #328ef6;
+            background-color:#000000; /*#328ef6;*/
 
         }
 
         .harvard-red {
 
-        	background-color: #AB0D24
+        	background-color:  #AB0D24
         }
 
         .yes-navy-blue-text {
@@ -277,9 +277,14 @@
 		 			
 		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
 		 			tessalate(random_child, num_block_column, false, global_mode)
+		 			if (global_mode === "dark"){
+					 		global_mode = "light"
+					 	} else {
+					 		global_mode = "dark"
+					 	}	
 		 			
 
-		 		}, 7000)
+		 		}, 10000)
 
 			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
 
@@ -287,10 +292,10 @@
 
 				
 
-				$(".logo").click(function () {
-					tessalate($(this), num_block_column,false, global_mode)
+				// $(".logo").click(function () {
+				// 	tessalate($(this), num_block_column,false, global_mode)
 
-				})
+				// })
 
 
 			 	function normal_gen(element, element1){
@@ -352,11 +357,7 @@
 					 	change(top_sibling, from, to, mode)
 					 	change(bottom_sibling, from, to, mode)
 
-					 	if (global_mode === "dark"){
-					 		global_mode = "light"
-					 	} else {
-					 		global_mode = "dark"
-					 	}				 	
+			 	
 
 					 	return
 		 			
