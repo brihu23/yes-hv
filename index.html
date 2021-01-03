@@ -57,7 +57,7 @@
 		#headline h1:nth-child(1) {
 			color: black;
 			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
-			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-width: 2px;
 			-webkit-text-stroke-color: #ffffff;;
 			/*text-shadow: 15px 10px 1px #000000;;*/
 
@@ -88,7 +88,7 @@
 			bottom: 110px; 
 			color: black;
 			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
-			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-width: 2px;
 			-webkit-text-stroke-color: #ffffff;;
 			/*text-shadow: 15px 10px 1px #000000;;*/
 
@@ -102,7 +102,7 @@
 
 
 		.logo {
-			opacity: 0.3;		
+			opacity: 0.2;		
 			
 		}
 
@@ -111,9 +111,9 @@
 
 		@keyframes flash {
 		  from {opacity: 0.3; transform: scale(1); }
-		  33% { opacity: .5; transform: scale(1.1); }
+		  33% { opacity: .7; transform: scale(1.1); }
 
-		  66% { opacity: .7; transform: scale(1.2); }
+		  66% { opacity: 1; transform: scale(1.2); }
 
 		  to { opacity: 0.3; transform: scale(1); }
 
@@ -198,6 +198,7 @@
 		 $(document).ready(function() {
 
 		 	var global_mode = "dark"
+		 	var click_mode = "dark"
 
 		 	backdrop()
 
@@ -263,20 +264,14 @@
 			 	
 
 			 	
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 2000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 2000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		setInterval( function() {pop(num_block_column, num_block_row)}, 500)
+
 		 		
 		 		
 		 		setInterval (function () {
 		 			
 		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
-		 			tessalate(random_child, num_block_column, false, global_mode)
+		 			tessalate(random_child, num_block_column, false, global_mode, 0)
 		 			if (global_mode === "dark"){
 					 		global_mode = "light"
 					 	} else {
@@ -284,7 +279,7 @@
 					 	}	
 		 			
 
-		 		}, 10000)
+		 		}, 8000)
 
 			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
 
@@ -292,10 +287,11 @@
 
 				
 
-				// $(".logo").click(function () {
-				// 	tessalate($(this), num_block_column,false, global_mode)
+				$(".logo").click(function () {
 
-				// })
+					tessalate($(this), num_block_column,false, global_mode)
+	
+				})
 
 
 			 	function normal_gen(element, element1){
@@ -320,7 +316,7 @@
 
 			 	}
 
-			 	async function tessalate(source_tile, row_length, timeout, mode){
+			 	async function tessalate(source_tile, row_length, timeout, mode, id){
 			 		if (mode === "dark"){
 			 			var from = "dark"
 			 			var to = "light"
@@ -333,7 +329,13 @@
 			 			const promise = await sleep(75)
 			 		}
 
-			 			//source_tile.css({"opacity": "0.1"})
+			 			source_tile.css({"opacity": "0.2"})
+			 			source_tile.mouseenter(function() {
+								$(this).css({"opacity": "1"})
+							})
+			 			source_tile.mouseleave(function() {
+								$(this).css({"opacity": "0.2"})
+							})
 
 				 		
 				 		var right_sibling = source_tile.next()
@@ -350,23 +352,26 @@
 					 			var diagonal_right_sibling = bottom_sibling.next()
 					 	}
 
-					 	change(right_sibling, from, to, mode)
-					 	change(left_sibling, from, to, mode)
-					 	change(diagonal_right_sibling, from, to, mode)
-					 	change(diagonal_left_sibling,from, to, mode)
-					 	change(top_sibling, from, to, mode)
-					 	change(bottom_sibling, from, to, mode)
+					 	change(right_sibling, from, to, mode, id)
+					 	change(left_sibling, from, to, mode, id)
+					 	change(diagonal_right_sibling, from, to, mode, id)
+					 	change(diagonal_left_sibling,from, to, mode, id)
+					 	change(top_sibling, from, to, mode, id)
+					 	change(bottom_sibling, from, to, mode, id)
 
 			 	
-
+					 	console.log(id)
 					 	return
 		 			
 
-					function change (element, condition, change_to, mode){
+					function change (element, condition, change_to, mode, id){
 						if (element.data("mode") === condition){
 							element.data("mode", change_to)
-							//element.css({"opacity": "0.1"})
-							element.flip("toggle", tessalate(element, row_length, true, mode))
+							element.css({"opacity": "0.3"})
+							// element.mouseover(function() {
+							// 	$(this).css({"opacity": "1"})
+							// })
+							element.flip("toggle", tessalate(element, row_length, true, mode, id + 1))
 						}
 
 					}
@@ -378,7 +383,7 @@
 
 			 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
 			 			random_child.removeClass('animate')
-			 			console.log(random_child, "pop")
+			 			//console.log(random_child, "pop")
 				 		random_child.addClass('animate');
 				 		//sleep(1000)
 				 		// random_child.removeClass('animate');
@@ -437,15 +442,7 @@
 				<h3> live pitch sunday, march 28th, 2021 </h3>
 			</div>
 		</div>
-		<div class = "row" id = "about">
-			about
-		</div>
-		<div class = "row" id = "meet">
-			meet the judges
-		</div>
-		<div class = "row" id = "sponsors">
-			sponsors
-		</div>
+
 
 	</div>
 
