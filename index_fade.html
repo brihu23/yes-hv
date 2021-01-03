@@ -1,0 +1,525 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <title>YES x HV Pitch Competition</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
+	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"> </script>
+    
+    <style>
+
+    	@import "compass/css3";
+
+        body {
+            font-family: sofia-pro;
+        }
+
+        nav {
+        	font-family: 'Montserrat', sans-serif;
+        	font-weight: 700;
+        	color: black;
+        }
+
+        #headline {
+
+        	display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: row;
+
+        }
+
+
+        #headline h3 {
+        	font-family: 'Montserrat', sans-serif;
+        	font-size: 25px;
+			font-weight: 600;
+			padding-bottom: 5px;
+			color: black;
+			display: block;
+		}
+        
+
+        #headline h1 {
+        	font-family: 'Montserrat', sans-serif;
+        	font-size: 80px;
+			font-weight: 900;
+			padding-bottom: 5px;
+			color: black;
+			display: block;
+		}
+
+		#headline h1:nth-child(1) {
+			color: black;
+			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: #ffffff;;
+			/*text-shadow: 15px 10px 1px #000000;;*/
+
+		}
+
+		#headline h1:nth-child(2) {		
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #328ef6;
+			clip-path: inset(55% 0% 0% 0%);			 
+			
+		}
+
+		#headline h1:nth-child(3) {
+			position: relative;
+			bottom: 110px; 			
+			color: black;
+			-webkit-text-fill-color: white; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 3px;
+			-webkit-text-stroke-color: #AB0D24;
+			clip-path: inset(0% 0% 45% 0%);
+
+		}
+
+		#headline h1:nth-child(4) {
+			position: relative;
+			bottom: 110px; 
+			color: black;
+			-webkit-text-fill-color: black; /* Will override color (regardless of order) */
+			-webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: #ffffff;;
+			/*text-shadow: 15px 10px 1px #000000;;*/
+
+		}
+
+		#headline h3:nth-child(5) {
+			position: relative;
+			bottom: 110px; 
+		}
+
+
+
+		.logo {
+			opacity: 0;		
+			
+		}
+
+		@keyframes fade_out {
+			from {opacity: 0.3}
+			to {opacity: 0}
+		}
+		
+		@keyframes fade_in {
+			from {opacity: 0}
+			to {opacity: 0.3}
+		}
+
+		.fade_out {
+			animation-name: fade_out; 
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+		}
+
+		.fade_in {
+			animation-name: fade_in; 
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			animation-iteration-count: 1;
+			animation-fill-mode: forwards;
+		}
+
+		@keyframes flash {
+		  from {opacity: 0; transform: scale(1); }
+		  33% { opacity: .5; transform: scale(1.1); }
+
+		  66% { opacity: .7; transform: scale(1.2); }
+
+		  to { opacity: 0; transform: scale(1); }
+
+		}
+
+		.animate {
+			animation-name: flash; 
+			animation-duration: 1.5s;
+			animation-timing-function: linear;
+			animation-iteration-count: 1;
+		}
+
+
+		#backdrop {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: baseline;
+
+
+		}
+
+		img {
+			/*height: 100%;*/
+			width: 100%;
+			max-width: 100%;
+   			max-height: 100%;
+   			text-align: center;	
+   			
+		}
+
+
+
+        .yes-navy-blue {
+
+           background-color: #000000; /*#051b33;*/
+
+        }
+
+        .yes-electric-blue {
+
+            background-color:#000000; /*#328ef6;*/
+
+        }
+
+        .harvard-red {
+
+        	background-color:  #AB0D24
+        }
+
+        .yes-navy-blue-text {
+
+           color: #051b33;
+
+        }
+
+        .yes-electric-blue-text {
+
+           color: #328ef6;
+
+        }
+
+        .harvard-red-text {
+
+        	color: #AB0D24
+        }
+
+        .logo:hover {
+			opacity:1;
+		}
+
+        
+
+    </style>
+
+
+</head>
+
+<body>
+	<script>
+		 $(document).ready(function() {
+
+		 	var global_mode = "dark"
+
+		 	backdrop()
+
+		 	$(window).resize(function() {
+		 		location.reload()
+		 	})
+
+		 	$(".logo").flip({
+		 		trigger: 'manual',
+		 		speed: 800
+		 	})
+
+
+
+
+
+
+
+		 	function backdrop () {
+		 		var toggle = true;
+			 	var headline_width = $("#headline").width()
+			 	var headline_height = $("#headline").height()
+			 	console.log(headline_height, headline_width)
+
+			 	//change block numbers based on screen size
+			 	var block_height= 40
+			 	var block_width = 40
+
+			 	var num_block_column = Math.floor(headline_width/block_width)
+			 	
+			 	var num_block_row = Math.floor(headline_height/block_height)
+
+			 	if (num_block_column % 2 != 0){
+			 		num_block_column = num_block_column
+			 	}
+
+			 	
+			 	
+
+
+			 	console.log("num_block_column: " + num_block_column, "num_block_row: " + num_block_row)
+
+			 	$(".logo").css(({"height":block_height, "width": block_width}))
+			 	
+			 	var yes_light = $(".yes_light")
+			 	var yes_dark = $(".yes_dark")
+			 	var hv_light = $(".hv_light")
+			 	var hv_dark = $(".hv_dark")	
+
+
+			 	console.log(block_height, block_width, yes_light, yes_dark)
+
+		 		for (var i = 0; i < num_block_row; i++){
+		 			if (i % 2 === 0){
+		 				normal_gen(hv_dark, yes_dark)
+		 				//normal_gen(hv_light, yes_light)
+		 			} else {
+		 				normal_gen(yes_dark, hv_dark)
+		 				//normal_gen(yes_light, hv_light)
+		 			}
+		 		} 			
+
+			 	
+
+			 	
+		 		var interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		var interval_2 = setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		var interval_3 = setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		// var interval_4 = setInterval( function() {pop(num_block_column, num_block_row)}, 1000)
+		 		// var interval_5 = setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 	
+		 		
+		 		
+		 		setInterval (async function () {
+		 			console.log("interval")
+		 			clearInterval(interval_1)
+		 			clearInterval(interval_2)
+		 			clearInterval(interval_3)
+		 			const promise_0 = await sleep(3000)
+		 			$("#backdrop").children().each(function (index, value){
+		 				//console.log($(this))
+		 				$(this).removeClass("fade_in").removeClass("fade_out").addClass("fade_in")
+		 			})
+		 			const promise_1 = await sleep(1000)
+		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+		 			tessalate(random_child, num_block_column, false, global_mode)
+		 			const promise_2 = await sleep(3000)
+
+		 			$("#backdrop").children().each(function (index, value){
+		 				console.log('fade')
+		 				$(this).removeClass("fade_in").addClass("fade_out")
+		 			})
+
+		 			interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 			interval_2 = setInterval( function() {pop(num_block_column, num_block_row)}, 2000)
+		 			interval_3 = setInterval( function() {pop(num_block_column, num_block_row)}, 3000)
+		 			
+		 			if (global_mode === "dark"){
+					 		global_mode = "light"
+					 	} else {
+					 		global_mode = "dark"
+					 	}	
+		 			
+
+		 		}, 10000)
+
+			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
+
+				//tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)
+
+				
+
+				// $(".logo").click(function () {
+				// 	tessalate($(this), num_block_column,false, global_mode)
+
+				// })
+
+
+			 	function normal_gen(element, element1){
+			 		for (let j = 0; j < num_block_column; j++ ){
+			 			if (j % 2 === 0){
+			 				const block = element.clone().
+			 				css({
+								"position":"relative",
+			 					"bottom": block_height/2,
+			 					// "margin-bottom": block_height/4,			 					
+			 				}).data("orient","top").data("mode", "dark").appendTo($("#backdrop"))
+			 			} else {
+			 				const block = element1.clone().
+			 				data("orient","bottom").data("mode", "dark").appendTo($("#backdrop"))
+			 				//console.log(block, block.data("orient"))
+			 			}
+			 		}	
+			 	}
+		
+
+			 	 $("#headline").css({"position": "relative", "bottom": headline_height/1.25 + "px", "pointer-events": "none",})
+
+			 	}
+
+			 	async function tessalate(source_tile, row_length, timeout, mode){
+			 		if (mode === "dark"){
+			 			var from = "dark"
+			 			var to = "light"
+			 		} else {
+			 			var from = "light"
+			 			var to = "dark"
+			 		}
+
+			 		if (timeout) {
+			 			const promise = await sleep(75)
+			 		}
+
+			 			//source_tile.css({"opacity": "0.1"})
+
+				 		
+				 		var right_sibling = source_tile.next()
+				 		var left_sibling = source_tile.prev()
+				 		var top_sibling = source_tile.prevAll().eq(row_length).next()
+				 		var bottom_sibling = source_tile.nextAll().eq(row_length).prev()
+
+				 		if (source_tile.data("orient") === "top")
+					 		{
+					 			var diagonal_left_sibling = top_sibling.prev()
+					 			var diagonal_right_sibling = top_sibling.next()
+					 	} else {
+					 			var diagonal_left_sibling = bottom_sibling.prev()
+					 			var diagonal_right_sibling = bottom_sibling.next()
+					 	}
+
+					 	change(right_sibling, from, to, mode)
+					 	change(left_sibling, from, to, mode)
+					 	change(diagonal_right_sibling, from, to, mode)
+					 	change(diagonal_left_sibling,from, to, mode)
+					 	change(top_sibling, from, to, mode)
+					 	change(bottom_sibling, from, to, mode)
+
+			 	
+
+					 	return 
+		 			
+
+					function change (element, condition, change_to, mode){
+						if (element.data("mode") === condition){
+							element.data("mode", change_to)
+							//element.css({"opacity": "0.1"})
+							element.flip("toggle", tessalate(element, row_length, true, mode))
+						}
+
+					}
+
+
+			 	}
+
+			 	function pop (num_block_column, num_block_row) {
+
+			 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+			 			random_child.removeClass('animate')
+			 			//console.log(random_child, "pop")
+				 		random_child.addClass('animate');
+				 		//sleep(1000)
+				 		// random_child.removeClass('animate');
+				 }
+
+				function sleep(ms) {
+					  return new Promise(resolve => setTimeout(resolve, ms));
+				}
+
+
+
+
+
+
+		 		
+
+		 	
+		 })
+	</script>
+
+	<div class = "container-fluid" id = "main">
+		<nav class = "navbar navbar-expand-lg navbar-light" style="background-color: #ffffff;">
+			<a class="navbar-brand" href="#">Navbar</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+
+		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav ml-auto">
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://www.yesatyale.org/">yale entrepreneurial society</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://www.harvardventures.org/">harvard ventures</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="https://onepager.vc/">onepager</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">FAQs</a>
+			      </li>
+    			</ul>
+    		</div>
+		</nav>
+
+		<div class = "row" id = "backdrop">
+		</div>
+
+
+		<div class = "row" id = "headline">
+			<div class = "col-12 mx-auto text-center">
+				<h1 class = "yes-navy-blue-text"> yale entrepreneurial society </h1>
+				<h1> x </h1>
+				<h1> x </h1>
+				<h1> harvard ventures </h1>
+				<h3> submissions due sunday, march 14th, 2021 </h3>
+				<h1> pitch competition </h1>
+				<h3> live pitch sunday, march 28th, 2021 </h3>
+			</div>
+		</div>
+		<div class = "row" id = "about">
+			about
+		</div>
+		<div class = "row" id = "meet">
+			meet the judges
+		</div>
+		<div class = "row" id = "sponsors">
+			sponsors
+		</div>
+
+	</div>
+
+	<div class = "logo yes_light yes light">
+		<img src= "yes_light.png" >
+	</div>
+
+	<div class = "logo hv_light hv light">
+		<img src= "hv_light.png" >
+	</div>
+
+
+	<div class = "logo yes_dark dark">
+		<div class = "front">
+		<img  src= "yes_dark_hex.png" >
+		</div>
+		<div class = "back">
+		<img src= "hv_light_hex.png" >
+		</div>			
+	</div>
+
+	<div class = "logo hv_dark dark">
+		<div class = "front">
+		<img src= "hv_dark_hex.png" >
+		</div>	
+		<div class = "back">
+		<img src= "yes_light_hex.png">
+		</div>
+	</div>
+
+
+
+</body>
+</html>
