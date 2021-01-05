@@ -264,11 +264,11 @@
 			 	
 
 			 	
-		 		setInterval( function() {pop(num_block_column, num_block_row)}, 500)
+		 		var interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 500)
 
 		 		
 		 		
-		 		setInterval (function () {
+		 		var interval_2 = setInterval (function () {
 		 			
 		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
 		 			tessalate(random_child, num_block_column, false, global_mode, 0)
@@ -280,6 +280,37 @@
 		 			
 
 		 		}, 8000)
+
+
+		 		$(window).blur(function () {
+		 			console.log('off')
+		 			clearInterval(interval_2)
+		 		})
+
+		 		$(window).focus(function () {
+		 			console.log('on')
+		 			interval_2 = setInterval (function () {
+		 			
+		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+		 			tessalate(random_child, num_block_column, false, global_mode, 0)
+		 			if (global_mode === "dark"){
+					 		global_mode = "light"
+					 	} else {
+					 		global_mode = "dark"
+					 	}	
+		 			
+
+		 			}, 8000)
+		 		})
+
+		 		$(window).resize(async function() {
+		 			console.log('resize')
+		 			clearInterval(interval_1)
+		 			clearInterval(interval_2)
+		 			$("#backdrop").empty()
+		 			backdrop()
+		 		})
+
 
 			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
 
@@ -360,7 +391,7 @@
 					 	change(bottom_sibling, from, to, mode, id)
 
 			 	
-					 	console.log(id)
+					 	//console.log(id)
 					 	return
 		 			
 
