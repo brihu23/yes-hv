@@ -202,9 +202,7 @@
 
 		 	backdrop()
 
-		 	$(window).resize(function() {
-		 		location.reload()
-		 	})
+
 
 		 	$(".logo").flip({
 		 		trigger: 'manual',
@@ -281,12 +279,12 @@
 
 		 		}, 8000)
 
+		 		//stop & start animations on tab switch
 
 		 		$(window).blur(function () {
 		 			console.log('off')
 		 			clearInterval(interval_2)
 		 		})
-
 		 		$(window).focus(function () {
 		 			console.log('on')
 		 			interval_2 = setInterval (function () {
@@ -302,6 +300,8 @@
 
 		 			}, 8000)
 		 		})
+
+		 		//resize on page size change
 
 		 		$(window).resize(async function() {
 		 			console.log('resize')
