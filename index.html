@@ -202,7 +202,9 @@
 
 		 	backdrop()
 
-
+		 	$(window).resize(function() {
+		 		location.reload()
+		 	})
 
 		 	$(".logo").flip({
 		 		trigger: 'manual',
