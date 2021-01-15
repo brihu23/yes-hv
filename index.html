@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
 	<script src="https://code.jquery.com/jquery-2.1.4.min.js"> </script>
-	<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"> </script>
+<!-- 	//<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"> </script> -->
     
     <style>
 
@@ -99,14 +99,61 @@
 			bottom: 110px; 
 		}
 
-
-
-		.logo {
-			opacity: 0.2;		
-			
+		.no-display {
+			display: none;
 		}
 
-		
+		.display {
+			display: block;
+		}
+
+		.logo {
+		  opacity: 0.2;	
+		  position: relative;
+		  transition: transform 0.8s;
+          transform-style: preserve-3d;  		  
+		}
+
+		.logo.flip .logo{
+			transform: rotateY(180deg);
+		}
+
+		.back {
+			transform: rotateY(180deg);
+		}
+
+
+		.flip-card {
+		  background-color: transparent;
+		  opacity: 0.2;
+		  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+		}
+
+		.flip-card-inner {
+		  position: relative;
+		  width: 100%;
+		  height: 100%;
+		  text-align: center;
+		  transition: transform 0.7s;
+		  transform-style: preserve-3d;
+		}
+
+		.flip-card.flip .flip-card-inner {
+		  transform: rotateY(180deg);
+		}
+
+		.flip-card-front, .flip-card-back {
+		  position: absolute;
+		  width: 100%;
+		  height: 100%;
+		  -webkit-backface-visibility: hidden; /* Safari */
+		  backface-visibility: hidden;
+		}
+
+		.flip-card-back {
+		  transform: rotateY(180deg);
+		}
+
 
 
 		@keyframes flash {
@@ -182,7 +229,7 @@
         	color: #AB0D24
         }
 
-        .logo:hover {
+        .flip-card:hover {
 			opacity:1;
 		}
 
@@ -200,32 +247,25 @@
 		 	var global_mode = "dark"
 		 	var click_mode = "dark"
 
+			
+
+
 		 	backdrop()
-
-		 	$(window).resize(function() {
-		 		location.reload()
-		 	})
-
-		 	$(".logo").flip({
-		 		trigger: 'manual',
-		 		speed: 800
-		 	})
-
-
-
-
 
 
 
 		 	function backdrop () {
+		 		var yes_dark = $(".yes_dark")
+				var hv_dark = $(".hv_dark")
+		 		
 		 		var toggle = true;
 			 	var headline_width = $("#headline").width()
 			 	var headline_height = $("#headline").height()
 			 	console.log(headline_height, headline_width)
 
 			 	//change block numbers based on screen size
-			 	var block_height= 40
-			 	var block_width = 40
+			 	var block_height= 50
+			 	var block_width = 50
 
 			 	var num_block_column = Math.floor(headline_width/block_width)
 			 	
@@ -241,16 +281,14 @@
 
 			 	console.log("num_block_column: " + num_block_column, "num_block_row: " + num_block_row)
 
-			 	$(".logo").css(({"height":block_height, "width": block_width}))
+			 	$(".flip-card").css(({"height":block_height, "width": block_width}))
 			 	
-			 	var yes_light = $(".yes_light")
-			 	var yes_dark = $(".yes_dark")
-			 	var hv_light = $(".hv_light")
-			 	var hv_dark = $(".hv_dark")	
+
+			 	
 
 
-			 	console.log(block_height, block_width, yes_light, yes_dark)
-
+			 	//console.log(block_height, block_width, yes_light, yes_dark)
+			 	
 		 		for (var i = 0; i < num_block_row; i++){
 		 			if (i % 2 === 0){
 		 				normal_gen(hv_dark, yes_dark)
@@ -264,43 +302,43 @@
 			 	
 
 			 	
-		 		var interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 500)
-
+		 		var interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 500)	 		
 		 		
-		 		
-		 		var interval_2 = setInterval (function () {
+		 		// var interval_2 = setInterval (function () {
 		 			
-		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
-		 			tessalate(random_child, num_block_column, false, global_mode, 0)
-		 			if (global_mode === "dark"){
-					 		global_mode = "light"
-					 	} else {
-					 		global_mode = "dark"
-					 	}	
+		 		// 	var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+		 		// 	tessalate(random_child, num_block_column, false, global_mode, 0)
+		 		// 	if (global_mode === "dark"){
+					//  		global_mode = "light"
+					//  	} else {
+					//  		global_mode = "dark"
+					//  	}	
 		 			
 
-		 		}, 8000)
+		 		// }, 5000)
 
 		 		//stop & start animations on tab switch
 
 		 		$(window).blur(function () {
 		 			console.log('off')
-		 			clearInterval(interval_2)
+		 			clearInterval(interval_1)
+		 			//clearInterval(interval_2)
 		 		})
 		 		$(window).focus(function () {
 		 			console.log('on')
-		 			interval_2 = setInterval (function () {
+		 			interval_1 = setInterval(function() {pop(num_block_column, num_block_row)}, 500)
+		 			// interval_2 = setInterval (function () {
 		 			
-		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
-		 			tessalate(random_child, num_block_column, false, global_mode, 0)
-		 			if (global_mode === "dark"){
-					 		global_mode = "light"
-					 	} else {
-					 		global_mode = "dark"
-					 	}	
+		 			// var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
+		 			// // tessalate(random_child, num_block_column, false, global_mode, 0)
+		 			// if (global_mode === "dark"){
+					 // 		global_mode = "light"
+					 // 	} else {
+					 // 		global_mode = "dark"
+					 // 	}	
 		 			
 
-		 			}, 8000)
+		 			// }, 8000)
 		 		})
 
 		 		//resize on page size change
@@ -308,21 +346,30 @@
 		 		$(window).resize(async function() {
 		 			console.log('resize')
 		 			clearInterval(interval_1)
-		 			clearInterval(interval_2)
+		 			//clearInterval(interval_2)
 		 			$("#backdrop").empty()
 		 			backdrop()
 		 		})
 
+				var main = false
 
-			 	//setInterval(function() {tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)}, 1000)
+				$(".flip-card").click(async function () {
 
-				//tessalate($("#backdrop").children().eq( Math.floor(Math.random() * (num_block_column - 1)) + 200), num_block_column)
+					if (main === false){
+						main = !main
+						tessalate($(this), num_block_column,false, global_mode)
+						const promise = await sleep (num_block_column/0.023)
+						if (global_mode === "dark"){
+						 		global_mode = "light"
+						 	} else {
+						 		global_mode = "dark"
+						 }
+						main = !main	
+					} else {
+						tessalate($(this), num_block_column,false, global_mode)
+					}
 
-				
-
-				$(".logo").click(function () {
-
-					tessalate($(this), num_block_column,false, global_mode)
+					
 	
 				})
 
@@ -336,9 +383,11 @@
 			 					"bottom": block_height/2,
 			 					// "margin-bottom": block_height/4,			 					
 			 				}).data("orient","top").data("mode", "dark").appendTo($("#backdrop"))
+			 				
 			 			} else {
 			 				const block = element1.clone().
 			 				data("orient","bottom").data("mode", "dark").appendTo($("#backdrop"))
+			 				
 			 				//console.log(block, block.data("orient"))
 			 			}
 			 		}	
@@ -393,18 +442,22 @@
 					 	change(bottom_sibling, from, to, mode, id)
 
 			 	
-					 	//console.log(id)
+
 					 	return
 		 			
 
 					function change (element, condition, change_to, mode, id){
 						if (element.data("mode") === condition){
+
+
 							element.data("mode", change_to)
 							element.css({"opacity": "0.3"})
-							// element.mouseover(function() {
-							// 	$(this).css({"opacity": "1"})
-							// })
-							element.flip("toggle", tessalate(element, row_length, true, mode, id + 1))
+							
+							element.toggleClass('flip')
+						
+							
+
+							tessalate(element, row_length, true, mode, id + 1)
 						}
 
 					}
@@ -425,11 +478,7 @@
 				function sleep(ms) {
 					  return new Promise(resolve => setTimeout(resolve, ms));
 				}
-
-
-
-
-		 		
+ 		
 
 		 	
 		 })
@@ -479,30 +528,29 @@
 
 	</div>
 
-	<div class = "logo yes_light yes light">
-		<img src= "yes_light.png" >
-	</div>
-
-	<div class = "logo hv_light hv light">
-		<img src= "hv_light.png" >
-	</div>
 
 
-	<div class = "logo yes_dark dark">
-		<div class = "front">
-		<img  src= "yes_dark_hex.png" >
+	<div class = "flip-card yes_dark dark" >
+		<div class = "flip-card-inner">
+		
+			<div class = "flip-card-front">
+				<img  src= "yes_dark_hex.png" >
+			</div>
+			<div class = "flip-card-back ">
+				<img src= "hv_light_hex.png" >
+			</div>	
 		</div>
-		<div class = "back">
-		<img src= "hv_light_hex.png" >
-		</div>			
+				
 	</div>
 
-	<div class = "logo hv_dark dark">
-		<div class = "front">
-		<img src= "hv_dark_hex.png" >
-		</div>	
-		<div class = "back">
-		<img src= "yes_light_hex.png">
+	<div class = "flip-card hv_dark dark" >	
+		<div class = "flip-card-inner">
+			<div class = "flip-card-front">
+				<img src= "hv_dark_hex.png" >
+			</div>	
+			<div class = "flip-card-back ">
+				<img src= "yes_light_hex.png">
+			</div>		
 		</div>
 	</div>
 
