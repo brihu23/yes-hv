@@ -259,15 +259,15 @@
 				var hv_dark = $(".hv_dark")
 		 		
 		 		var toggle = true;
-			 	var headline_width = $("#headline").width()
-			 	var headline_height = $("#headline").height()
+			 	var headline_width = $(document).width() -18
+			 	var headline_height = $("#headline").height() 
 			 	console.log(headline_height, headline_width)
 
 			 	//change block numbers based on screen size
 			 	var block_height= 50
 			 	var block_width = 50
 
-			 	var num_block_column = Math.floor(headline_width/block_width)
+			 	var num_block_column = Math.floor(headline_width/block_width) 
 			 	
 			 	var num_block_row = Math.floor(headline_height/block_height)
 
