@@ -339,7 +339,7 @@
 		 			global_mode = "light"
 		 					 			
 
-		 			}, 12000)
+		 			}, 7000)
 		 		})
 
 		 		//resize on page size change
@@ -355,6 +355,7 @@
 	
 
 				$(".logo").click(async function () {
+					clearInterval(interval_2)
 					console.log(main, global_mode)
 					if (main === false){
 						main = !main
