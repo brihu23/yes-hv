@@ -360,7 +360,7 @@
 						main = !main
 						tessalate($(this), num_block_column,false, global_mode)	
 						var larger = num_block_column > num_block_row ? num_block_column : num_block_row				
-						const promise = await sleep (larger/0.03)
+						const promise = await sleep (larger/0.01)
 						if (global_mode === "dark"){
 						 		global_mode = "light"
 						 	} else {
