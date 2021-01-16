@@ -312,7 +312,7 @@
 
 				
 
-				$(".logo").click(function () {
+				$(".logo").click(async function () {
 					if (main === false){
 						main = !main
 						tessalate($(this), num_block_column,false, global_mode)
@@ -408,10 +408,10 @@
 							// 	$(this).css({"opacity": "1"})
 							// })
 
-						 	// $(element).flip({
-						 	// 	trigger: 'manual',
-						 	// 	speed: 800
-						 	// })
+						 	$(element).flip({
+						 		trigger: 'manual',
+						 		speed: 800
+						 	})
 							element.flip("toggle", tessalate(element, row_length, true, mode, id + 1))
 						}
 
