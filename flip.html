@@ -358,9 +358,9 @@
 			 			var to = "dark"
 			 		}
 
-// 			 		if (timeout) {
-// 			 			//const promise = await sleep(75)
-// 			 		}
+			 		if (timeout) {
+			 			const promise = await sleep(75)
+			 		}
 
 			 			source_tile.css({"opacity": "0.2"})
 			 			source_tile.mouseenter(function() {
@@ -404,7 +404,8 @@
 							// element.mouseover(function() {
 							// 	$(this).css({"opacity": "1"})
 							// })
-							element.flip("toggle", tessalate(element, row_length, true, mode, id + 1))
+							element.flip("toggle")
+							tessalate(element, row_length, true, mode, id + 1)
 						}
 
 					}
