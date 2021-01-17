@@ -69,7 +69,7 @@
 
 		.main-text {
 			position: relative;
-			bottom: 50px;
+			top: 50px;
 		}
         
 
@@ -161,6 +161,78 @@
 
 		}
 
+		* { box-sizing: border-box; }
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.scene {
+  border: 1px solid #CCC;
+  margin: 40px 0;
+  position: relative;
+  width: 210px;
+  height: 140px;
+  margin: 80px auto;
+  perspective: 1000px;
+}
+
+.carousel {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transform: translateZ(-288px);
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.carousel__cell {
+  position: absolute;
+  width: 190px;
+  height: 120px;
+  left: 20px;
+  top: 10px;
+  border: 2px solid black;
+  line-height: 116px;
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  transition: transform 1s, opacity 1s;
+}
+
+.carousel__cell:nth-child(9n+1) { background: black}
+.carousel__cell:nth-child(9n+2) { background: black}
+.carousel__cell:nth-child(9n+3) { background: black}
+.carousel__cell:nth-child(9n+4) { background: black}
+.carousel__cell:nth-child(9n+5) { background: black}
+.carousel__cell:nth-child(9n+6) { background: black}
+.carousel__cell:nth-child(9n+7) { background: black}
+.carousel__cell:nth-child(9n+8) { background: black}
+.carousel__cell:nth-child(9n+0) { background: black}
+
+.carousel__cell:nth-child(1) { transform: rotateY(  0deg) translateZ(288px); }
+.carousel__cell:nth-child(2) { transform: rotateY( 40deg) translateZ(288px); }
+.carousel__cell:nth-child(3) { transform: rotateY( 80deg) translateZ(288px); }
+.carousel__cell:nth-child(4) { transform: rotateY(120deg) translateZ(288px); }
+.carousel__cell:nth-child(5) { transform: rotateY(160deg) translateZ(288px); }
+.carousel__cell:nth-child(6) { transform: rotateY(200deg) translateZ(288px); }
+.carousel__cell:nth-child(7) { transform: rotateY(240deg) translateZ(288px); }
+.carousel__cell:nth-child(8) { transform: rotateY(280deg) translateZ(288px); }
+.carousel__cell:nth-child(9) { transform: rotateY(320deg) translateZ(288px); }
+
+
+
+.carousel-options {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  background: hsla(0, 0%, 100%, 0.8);
+}
+
+
+
 
 
 		@keyframes flash {
@@ -235,6 +307,477 @@
 
         	color: #AB0D24
         }
+
+        .gallery-blurb {
+
+            font-weight: 400;
+
+            /*margin: 10px 0px;*/
+
+            /*width: 100%;*/
+
+        }
+
+
+        .gallery-button {
+
+            margin: 10px 0px;
+
+            background-color: white;
+
+            border: none;
+
+            width: 100%;
+
+            display: flex;
+
+            flex-flow: column;
+
+            justify-content: start;
+
+            box-shadow: 0px 0px 8px #dddddd;
+
+            padding: 14px 20px;
+
+            transition: all 0.3s;
+
+        }
+
+
+
+        .gallery-button:hover {
+
+            outline: none;
+
+            /*box-shadow: none;*/
+
+            box-shadow: 0px 0px 30px #041a48;
+
+            cursor: pointer;
+
+        }
+
+
+
+        .gallery-button:focus {
+
+            outline: none;
+
+            /*box-shadow: none;*/
+
+            box-shadow: 0px 0px 8px #dddddd;
+
+        }
+
+
+
+        .gallery-button-container {
+
+            display: flex;
+
+            flex: 0 0 auto;
+
+            flex-flow: row;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            width: 100%;
+
+            /*text-align: left;*/
+
+        }
+
+
+
+        .gallery-button-header {
+
+            display: flex;
+
+            flex: 0 0 auto;
+
+            flex-flow: row;
+
+            align-items: center;
+
+        }
+
+
+
+        .gallery-button-info {
+
+            width: 100%;
+
+  /*        display: flex;
+
+            flex: 0 0 auto;
+
+            flex-flow: row;*/
+
+            align-items: center;
+
+            /*justify-content: flex-center;*/
+
+            font-weight: 700;
+
+            font-size: 13px;
+
+        }
+
+        .gallery-button-info-link {
+
+            width: 100%;
+
+            display: flex;
+
+            flex: 0 0 auto;
+
+            flex-flow: row;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            font-weight: 700;
+
+            font-size: 12px;
+
+        }
+
+
+
+        .gallery-button-info .see-more {
+
+            color: #328ef6 !important;
+
+            cursor: pointer;
+
+            margin-left: 3px;
+
+        }
+
+
+
+        .gallery-button-title {
+
+            margin: 0;
+
+            padding-left: 16px;
+
+            font-size: 24px;
+
+        }
+
+        .crop {
+            background: no-repeat;
+            background-size: 100%;
+            /*margin: 0px;*/
+            width: 120px;
+            height: 120px;
+            /*line-height: 80px;
+            text-align: center;
+            object-fit: cover;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;*/
+            
+        }
+        /*.crop img {       
+
+            object-fit: cover;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            max-width:100%;
+            max-height:100%;
+            vertical-align: middle;
+        }*/
+
+
+
+
+
+        .gallery-button-logo {
+
+           /* height: 60px;
+
+            width: 60px;
+
+            border-right: 1px #dddddd solid;
+
+            padding-right: 14px;
+
+            border-radius: 20%*/
+
+            margin: 0px;
+            width:  140px;
+            height: 140px;
+        
+            object-fit: cover;
+
+        }
+
+
+
+        .gallery-button-blurb {
+
+            text-align: left;
+
+            overflow: hidden;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 3;
+
+            -webkit-box-orient: vertical;
+
+            margin: 0px;
+
+            /*padding-left: 18px;*/
+
+            font-size: 14px;
+
+        }
+
+
+
+        .opp-modal hr {
+
+            margin: 26px 10px;
+
+        }
+
+
+
+        .modal-container {
+
+            margin: 3vh;
+
+        }
+
+        .opp-modal {
+
+            max-width: 100%;           
+
+            font-size: 14px;
+
+        }
+
+
+
+
+        .opp-logo {
+
+            height: 150px;
+
+            width: auto;
+
+            border-radius: 50%;
+
+        }
+
+
+
+        .opp-basic-info {
+
+            margin: 0px 10px;
+
+        }
+
+
+
+        .opp-section-header {
+
+            font-weight: 700;
+
+        }
+
+
+
+        .opp-info {
+
+            display: flex;
+
+            flex-direction: row;
+
+        }
+
+        .row-margin {
+            
+        }
+
+
+
+        @media only screen and (max-width: 992px) {
+
+            .opp-info {
+
+                flex-direction: column;
+
+            }
+
+        }
+
+
+
+        @media only screen and (max-device-width: 568px) {
+
+            .modal-container {
+
+                margin: 0;
+
+            }
+
+            h1 strong {
+
+                font-size: 32px;
+
+            }
+
+            h2 strong {
+
+                font-size: 28px;
+                
+            }
+
+            /*.gallery-button-info,
+            .gallery-button-blurb {
+
+                display: none;
+
+            }*/
+
+/*            .gallery-button-logo {
+
+                height: 40px;
+
+                width: auto;
+
+                border: none;
+
+                padding-right: 8px;
+
+            }*/
+
+            .gallery-button-header {
+
+                width: 100%;
+
+            }
+/*
+            .gallery-button-title {
+
+                padding-left: 8px;
+
+                font-size: 12px;
+
+            }*/
+
+        }
+
+
+
+
+
+        div.relative {
+          position: relative;
+        } 
+
+        div.absolute {
+          
+          position: absolute;
+          top: 41%;
+          left: 80%;
+          
+          
+        }
+
+
+
+        .opp-info div {
+
+            display: flex;
+
+            flex-direction: row;
+
+        }
+
+        .circle {
+            border-radius: 20%;
+        }
+
+
+
+        .opp-info span {
+
+            display: flex;
+
+            width: auto;
+
+            border-radius: 3px;
+
+            color: white;
+
+            margin: 6px 4px;
+
+            padding: 6px;
+
+        }
+
+        .button-margins {
+            margin-right: 4px;
+   
+        }
+
+        .opp-contact,
+
+        .opp-industry {
+
+            margin-top: 9px;
+
+        }
+
+
+
+        .yes-navy-blue {
+
+            background-color: #051b33;
+
+        }
+
+
+
+        .yes-electric-blue {
+
+            background-color: #328ef6;
+
+        }
+
+        .dog::after {
+            content: "Close";
+        }
+
+        body {
+            background:#fff;
+        }
+
+        .opp-info-links {
+            display: flex;
+
+            flex-direction: row;
+                
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.0;
+            
+        }
+
+        .filter {
+            width: 9rem;
+        }
+
         
 
     </style>
@@ -256,17 +799,93 @@
 		 		speed: 800
 		 	})
 
+
+		 	var carousel = document.querySelector('.carousel');
+			var cells = carousel.querySelectorAll('.carousel__cell');
+			var cellCount; // cellCount set from cells-range input value
+			var selectedIndex = 0;
+			var cellWidth = carousel.offsetWidth;
+			var cellHeight = carousel.offsetHeight;
+			var isHorizontal = true;
+			var rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+			var radius, theta;
+			// console.log( cellWidth, cellHeight );
+
+			function rotateCarousel() {
+			  var angle = theta * selectedIndex * -1;
+			  carousel.style.transform = 'translateZ(' + -radius + 'px) ' + 
+			    rotateFn + '(' + angle + 'deg)';
+			}
+
+			var prevButton = document.querySelector('.previous-button');
+			prevButton.addEventListener( 'click', function() {
+			  selectedIndex--;
+			  rotateCarousel();
+			});
+
+			var nextButton = document.querySelector('.next-button');
+			nextButton.addEventListener( 'click', function() {
+			  selectedIndex++;
+			  rotateCarousel();
+			});
+
+			var cellsRange = document.querySelector('.cells-range');
+			cellsRange.addEventListener( 'change', changeCarousel );
+			cellsRange.addEventListener( 'input', changeCarousel );
+
+
+
+			function changeCarousel() {
+			  cellCount = cellsRange.value;
+			  theta = 360 / cellCount;
+			  var cellSize = isHorizontal ? cellWidth : cellHeight;
+			  radius = Math.round( ( cellSize / 2) / Math.tan( Math.PI / cellCount ) );
+			  for ( var i=0; i < cells.length; i++ ) {
+			    var cell = cells[i];
+			    if ( i < cellCount ) {
+			      // visible cell
+			      cell.style.opacity = 1;
+			      var cellAngle = theta * i;
+			      cell.style.transform = rotateFn + '(' + cellAngle + 'deg) translateZ(' + radius + 'px)';
+			    } else {
+			      // hidden cell
+			      cell.style.opacity = 0;
+			      cell.style.transform = 'none';
+			    }
+			  }
+
+			  rotateCarousel();
+			}
+
+			var orientationRadios = document.querySelectorAll('input[name="orientation"]');
+			( function() {
+			  for ( var i=0; i < orientationRadios.length; i++ ) {
+			    var radio = orientationRadios[i];
+			    radio.addEventListener( 'change', onOrientationChange );
+			  }
+			})();
+
+			function onOrientationChange() {
+			  var checkedRadio = document.querySelector('input[name="orientation"]:checked');
+			  isHorizontal = checkedRadio.value == 'horizontal';
+			  rotateFn = isHorizontal ? 'rotateY' : 'rotateX';
+			  changeCarousel();
+			}
+
+			// set initials
+			onOrientationChange();
+
 		 	function backdrop () {
 
 		 		var main = false;
-		 		var extra_scale = 1.15
+		 		var extra_scale = 1.05
 			 	var headline_width = $("#headline").width()
 			 	var headline_height = $("#headline").height() * extra_scale
 			 	console.log(headline_height, headline_width)
 
 			 	//change block numbers based on screen size
-			 	var block_height= 45
-			 	var block_width = 45
+			 	var block_height= 60
+			 	var block_width = 60
 
 			 	var num_block_column = Math.floor(headline_width/block_width)
 			 	
@@ -326,7 +945,7 @@
 		 		})
 		 		$(window).focus(async function () {
 		 			console.log('on')
-		 			const promise = await sleep(500)
+		 			const promise = await sleep(1000)
 		 			interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 500)
 
 		 			var random_child = $("#backdrop").children().eq(Math.floor(Math.random() * (num_block_column * num_block_row)) - 100)
@@ -350,7 +969,7 @@
 		 			clearInterval(interval_2)
 		 			$("#backdrop").empty()
 		 			backdrop()
-		 			interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 500)
+		 			interval_1 = setInterval( function() {pop(num_block_column, num_block_row)}, 350)
 		 		})
 	
 
@@ -361,7 +980,7 @@
 						main = !main
 						tessalate($(this), num_block_column,false, global_mode)	
 						var larger = num_block_column > num_block_row ? num_block_column : num_block_row				
-						const promise = await sleep (larger/0.01)
+						const promise = await sleep (larger/0.015)
 						if (global_mode === "dark"){
 						 		global_mode = "light"
 						 	} else {
@@ -395,7 +1014,7 @@
 		
 
 			 	 $("#headline").css({"position": "relative", "bottom": headline_height/extra_scale + "px", "pointer-events": "none",})
-			 	 $("#about").css({"position": "relative", "bottom": headline_height/extra_scale + block_height/2  + "px",})
+			 	 $("#about").css({"position": "relative", "bottom": headline_height/extra_scale - block_height  + "px",})
 
 			 	}
 
@@ -535,42 +1154,136 @@
 
 		</div>
 
-		<div class = "row" id = "about" class="black-background">
-			<div class = "spacer row">
-				<div class = "col-md-6 col-sm-12 mx-auto text-center px-5">
-					<h1> what is one-pager </h1>
-					<p> 
-						What you know >  who you know. 
-					</p> 
-					<p> 
-						An all-in-one fundraising tool for founders where you can build, share, and analyze your start-up all in one place. Your One Pager is a story. 20,000+ investors built in, advanced tracking for founders and more  <br> Check out below to see how to set yours up!
-					</p>
-					<div class = "row">
-						<div class = "col-12 mx-auto text-center">
-							<iframe width = "100%" height = "200%" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
-							</iframe>
-						</div>
-					</div>
+		<div class = "row" id = "about">
+			<div class = "col-12 mx-auto text-center">
+				<h1> meet the judges </h1>
+				<div class="scene">
+				  <div class="carousel">
+				    <div class="carousel__cell">1</div>
+				    <div class="carousel__cell">2</div>
+				    <div class="carousel__cell">3</div>
+				    <div class="carousel__cell">4</div>
+				    <div class="carousel__cell">5</div>
+				    <div class="carousel__cell">6</div>
+				    <div class="carousel__cell">7</div>
+				    <div class="carousel__cell">8</div>
+				    <div class="carousel__cell">9</div>
+				    <div class="carousel__cell">10</div>
+				    <div class="carousel__cell">11</div>
+				    <div class="carousel__cell">12</div>
+				    <div class="carousel__cell">13</div>
+				    <div class="carousel__cell">14</div>
+				    <div class="carousel__cell">15</div>
+				  </div>
 				</div>
-				<div class = "col-md-6 col-sm-12 mx-auto text-center px-5">
-					<div class = "row">
-						<div class = "col-12 mx-auto text-center">
-							<h1> undergrads </h1>
-							<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id vehicula nibh. Suspendisse potenti. Fusce quis mattis urna, et aliquet felis. Integer semper hendrerit tristique. Phasellus eleifend nunc ac lobortis vehicula. Mauris condimentum accumsan dignissim. Praesent ultricies non lectus nec mollis. Sed pharetra risus eu porttitor scelerisque. Phasellus faucibus porttitor molestie. Vivamus semper nulla velit, at vestibulum libero tristique lacinia. Fusce vitae tellus in quam pulvinar rhoncus sit amet nec ligula. Nullam consectetur libero sit amet odio lacinia consequat. </p>
-						</div>
+
+				<div class="carousel-options">
+				  <p>
+				    <label>
+				      Cells
+				      <input class="cells-range" type="range" min="3" max="15" value="9" />
+				    </label>
+				  </p>
+				  <p>
+				    <button class="previous-button">Previous</button>
+				    <button class="next-button">Next</button>
+				  </p>
+				  <p>
+				    Orientation:
+				    <label>
+				      <input type="radio" name="orientation" value="horizontal" checked />
+				      horizontal
+				    </label>
+				    <label>
+				      <input type="radio" name="orientation" value="vertical" />
+				      vertical
+				    </label>
+				  </p>
+				</div>
+
+			</div>
+
+			<div class = "col-6 mx-auto text-center">
+				<h1> undergrads </h1>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id vehicula nibh. Suspendisse potenti. Fusce quis mattis urna, et aliquet felis. Integer semper hendrerit tristique. Phasellus eleifend nunc ac lobortis vehicula. Mauris condimentum accumsan dignissim. Praesent ultricies non lectus nec mollis. Sed pharetra risus eu porttitor scelerisque. Phasellus faucibus porttitor molestie. Vivamus semper nulla velit, at vestibulum libero tristique lacinia. Fusce vitae tellus in quam pulvinar rhoncus sit amet nec ligula. Nullam consectetur libero sit amet odio lacinia consequat. </p>
+				<div class = "row">
+					<div class = "col-6">
+						<h2> Prizes </h2>
 					</div>
-					<hr>
-					<div class = "row">
-						<div class = "col-12 mx-auto text-center">
-							<h1> grads </h1>
-							<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id vehicula nibh. Suspendisse potenti. Fusce quis mattis urna, et aliquet felis. Integer semper hendrerit tristique. Phasellus eleifend nunc ac lobortis vehicula. Mauris condimentum accumsan dignissim. Praesent ultricies non lectus nec mollis. Sed pharetra risus eu porttitor scelerisque. Phasellus faucibus porttitor molestie. Vivamus semper nulla velit, at vestibulum libero tristique lacinia. Fusce vitae tellus in quam pulvinar rhoncus sit amet nec ligula. Nullam consectetur libero sit amet odio lacinia consequat. </p>
-						</div>
+					<div class = "col-6">
+						<h2> Requirements </h2>
 					</div>
 				</div>
 			</div>
+
+			<div class = "col-6 mx-auto text-center">
+				<h1> grads </h1>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id vehicula nibh. Suspendisse potenti. Fusce quis mattis urna, et aliquet felis. Integer semper hendrerit tristique. Phasellus eleifend nunc ac lobortis vehicula. Mauris condimentum accumsan dignissim. Praesent ultricies non lectus nec mollis. Sed pharetra risus eu porttitor scelerisque. Phasellus faucibus porttitor molestie. Vivamus semper nulla velit, at vestibulum libero tristique lacinia. Fusce vitae tellus in quam pulvinar rhoncus sit amet nec ligula. Nullam consectetur libero sit amet odio lacinia consequat. </p>
+				<div class = "row">
+					<div class = "col-6">
+						<h2> Prizes </h2>
+					</div>
+					<div class = "col-6">
+						<h2> Requirements </h2>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			<br>
+			<br>
+			<br> 
+			<br>
+			<br> 
+			<br>
+			<br> 
+
+
+			<br>
+			<br>
+			<br>
+			<br> 
+			<br>
+			<br> 
+			<br>
+			<br> 
+
+
+			<div class = "col-sm-12 mx-auto text-center px-5">
+				<h1> timeline </h1>
+			</div>
+
+
+			<br>
+			<br> 
+			<br>
+			<br> 
+			<br>
+			<br> 
+			<br>
+			<br> 
+			<div class = "col-sm-12 mx-auto text-center px-5">
+				<h1> what is one-pager </h1>
+				<p> 
+					What you know >  who you know. 
+				</p> 
+				<p> 
+					An all-in-one fundraising tool for founders where you can build, share, and analyze your start-up all in one place. Your One Pager is a story. 20,000+ investors built in, advanced tracking for founders and more  <br> Check out below to see how to set yours up!
+				</p>
+				<div class = "row">
+					<div class = "col-12 mx-auto text-center">
+						<iframe width = "100%" height = "200%" src="https://www.youtube.com/embed/tgbNymZ7vqY?playlist=tgbNymZ7vqY&loop=1">
+						</iframe>
+					</div>
+				</div>
+			</div>
+
+
+		
 		</div>
 
-
+		<div class = "row">
+			
 
 	</div>
 
