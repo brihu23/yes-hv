@@ -880,12 +880,12 @@ body {
 		 		var main = false;
 		 		var extra_scale = 1.05
 			 	var headline_width = $("#headline").width()
-			 	var headline_height = $("#headline").height() * extra_scale
+			 	var headline_height = $(document).height() * extra_scale
 			 	console.log(headline_height, headline_width)
 
 			 	//change block numbers based on screen size
-			 	var block_height= 60
-			 	var block_width = 60
+			 	var block_height= 90
+			 	var block_width = 90
 
 			 	var num_block_column = Math.floor(headline_width/block_width)
 			 	
